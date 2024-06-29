@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Timetable Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+        input[type="text"], input[type="password"], select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .schedule {
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>College Timetable Management System</h2>
+
+        <!-- User Login Form -->
+        <form id="loginForm">
+            <h3>Login</h3>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <button type="submit">Login</button>
+        </form>
+
+        <!-- Schedule Creation Form -->
+        <form id="scheduleForm" style="display: none;">
+            <h3>Create Schedule</h3>
+            <label for="course">Course:</label>
+            <input type="text" id="course" name="course" required>
+            <label for="time">Time:</label>
+            <input type="text" id="time" name="time" placeholder="e.g., Mon 09:00 AM - 11:00 AM" required>
+            <button type="submit">Create Schedule</button>
+        </form>
+
+        <!-- Display Schedule -->
+        <div class="schedule" id="scheduleList" style="display: none;">
+            <h3>Schedule</h3>
+            <ul id="scheduleItems">
+                <!-- Schedule items will be dynamically added here -->
+            </ul>
+        </div>
+
+        <!-- Announcements -->
+        <div id="announcements" style="display: none;">
+            <h3>Announcements</h3>
+            <ul id="announcementList">
+                <!-- Announcements will be dynamically added here -->
+            </ul>
+        </div>
+
+        <!-- Attendance Tracking -->
+        <div id="attendance" style="display: none;">
+            <h3>Attendance Tracking</h3>
+            <p>Attendance records and tracking functionality can be implemented here.</p>
+        </div>
+    </div>
+
+    <script>
+        // Simulating user roles and switching between forms
+        const loginForm = document.getElementById('loginForm');
+        const scheduleForm = document.getElementById('scheduleForm');
+        const scheduleList = document.getElementById('scheduleList');
+        const announcements = document.getElementById('announcements');
+        const attendance = document.getElementById('attendance');
+
+        loginForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            // Simulate login process (assuming successful login for simplicity)
+            loginForm.style.display = 'none';
+            scheduleForm.style.display = 'block';
+            scheduleList.style.display = 'block';
+            announcements.style.display = 'block';
+            attendance.style.display = 'block';
+        });
+
+        // Simulate schedule creation
+        const scheduleItems = document.getElementById('scheduleItems');
+        const scheduleFormSubmit = document.getElementById('scheduleForm');
+        scheduleFormSubmit.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const course = document.getElementById('course').value;
+            const time = document.getElementById('time').value;
+            const li = document.createElement('li');
+            li.textContent = `${course} - ${time}`;
+            scheduleItems.appendChild(li);
+            document.getElementById('scheduleForm').reset();
+        });
+
+        // Simulate announcements
+        const announcementList = document.getElementById('announcementList');
+        const announcementsData = [
+            'Welcome to our college timetable management system!',
+            'Reminder: Final exams start next week.',
+            'New courses added to the fall semester.'
+        ];
+
+        announcementsData.forEach(function(announcement) {
+            const li = document.createElement('li');
+            li.textContent = announcement;
+            announcementList.appendChild(li);
+        });
+    </script>
+</body>
+</html>
